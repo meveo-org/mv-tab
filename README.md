@@ -19,7 +19,7 @@ To experiment with the MvTab component.
 3. Update the tabs in the index.html file     
 
 
-You can also check this [demo(unavailable yet)]()
+You can also check this [demo](https://manaty.net/mv-tab/)
 
 
 ## Acknowledgements
