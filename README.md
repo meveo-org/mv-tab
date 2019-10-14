@@ -1,4 +1,4 @@
-# mv-menu
+# mv-tab
 
  MvTab is a Meveo menu component (based on lit-element) that provides a tab with content.
 
