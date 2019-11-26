@@ -1,24 +1,20 @@
-import {
-	LitElement,
-	html,
-	css
-} from 'https://cdn.jsdelivr.net/gh/manaty/mv-dependencies@master/web_modules/lit-element.js';
+import { LitElement, html, css } from "lit-element";
 
 export class MvTab extends LitElement {
-	static get properties() {
-		return {
-			key: { type: String, attribute: true },
-			group: { type: Boolean, attribute: true },
-			tab: { type: Boolean, attribute: true },
-			content: { type: Boolean, attribute: true },
-			disabled: { type: Boolean, attribute: true },
-			active: { type: Boolean, reflect: true },
-			selected: { type: String, reflect: true }
-		};
-	}
+  static get properties() {
+    return {
+      key: { type: String, attribute: true },
+      group: { type: Boolean, attribute: true },
+      tab: { type: Boolean, attribute: true },
+      content: { type: Boolean, attribute: true },
+      disabled: { type: Boolean, attribute: true },
+      active: { type: Boolean, reflect: true },
+      selected: { type: String, reflect: true }
+    };
+  }
 
-	static get styles() {
-		return css`
+  static get styles() {
+    return css`
 			:host {
 				font-family: var(--font-family, Arial);
 				font-size: var(--font-size-m, 10pt);
@@ -62,17 +58,17 @@ export class MvTab extends LitElement {
 				margin-block-end: unset;
 			}
 		`;
-	}
+  }
 
-	selectTab = () => {
-		if (!this.disabled) {
-			this.parentNode.selected = this.key;
-		}
-	};
+  selectTab = () => {
+    if (!this.disabled) {
+      this.parentNode.selected = this.key;
+    }
+  };
 
-	render() {
-		if (this.group) {
-			return html`
+  render() {
+    if (this.group) {
+      return html`
         <div class="mv-tab-group">
           <nav class="mv-tab-menu">
             <ul>
@@ -84,58 +80,66 @@ export class MvTab extends LitElement {
           </section>
         </div>
         `;
-		} else if (this.tab) {
-			this.setAttribute('slot', 'tab-item');
-			return html`
-      <li .value="${this.key}" ?disabled="${this.disabled}" ?active="${this.active}" @click="${this.selectTab}">
+    } else if (this.tab) {
+      this.setAttribute("slot", "tab-item");
+      return html`
+      <li
+        .value="${this.key}"
+        ?disabled="${this.disabled}"
+        ?active="${this.active}"
+        @click="${this.selectTab}"
+      >
         <slot></slot>
       </li>
       `;
-		} else if (this.content && this.active) {
-			this.setAttribute('slot', 'tab-content');
-			return html`
+    } else if (this.content && this.active) {
+      this.setAttribute("slot", "tab-content");
+      return html`
 			    <slot></slot>
 			  `;
-		}
-		return html``;
-	}
+    }
+    return html``;
+  }
 
-	connectedCallback() {
-		//initialize
-		if (this.group) {
-			this.selected = this.children && this.children[0] && this.children[0].getAttribute('key');
-		}
-		if (this.tab || this.content) {
-			this.active = this.key === this.parentNode.selected;
-		}
-		super.connectedCallback();
-	}
+  connectedCallback() {
+    //initialize
+    if (this.group) {
+      this.selected =
+        this.children &&
+        this.children[0] &&
+        this.children[0].getAttribute("key");
+    }
+    if (this.tab || this.content) {
+      this.active = this.key === this.parentNode.selected;
+    }
+    super.connectedCallback();
+  }
 
-	attributeChangedCallback(name, oldval, newval) {
-		if (this.group && name === 'selected') {
-			let oldTabFound = false;
-			let oldContentFound = false;
-			let newTabFound = false;
-			let newContentFound = false;
-			for (let child of this.children) {
-				const isActive = child.active;
-				const isSelected = child.key === this.selected;
-				if (oldTabFound && newTabFound && oldContentFound && newContentFound) {
-					break;
-				}
-				if (isActive && !isSelected) {
-					oldTabFound = this.tab ? true : oldTabFound;
-					oldContentFound = this.content ? true : oldContentFound;
-					child.active = false;
-				} else if (isSelected) {
-					newTabFound = this.tab ? true : newTabFound;
-					newContentFound = this.content ? true : newContentFound;
-					child.active = true;
-				}
-			}
-		}
-		super.attributeChangedCallback(name, oldval, newval);
-	}
+  attributeChangedCallback(name, oldval, newval) {
+    if (this.group && name === "selected") {
+      let oldTabFound = false;
+      let oldContentFound = false;
+      let newTabFound = false;
+      let newContentFound = false;
+      for (let child of this.children) {
+        const isActive = child.active;
+        const isSelected = child.key === this.selected;
+        if (oldTabFound && newTabFound && oldContentFound && newContentFound) {
+          break;
+        }
+        if (isActive && !isSelected) {
+          oldTabFound = this.tab ? true : oldTabFound;
+          oldContentFound = this.content ? true : oldContentFound;
+          child.active = false;
+        } else if (isSelected) {
+          newTabFound = this.tab ? true : newTabFound;
+          newContentFound = this.content ? true : newContentFound;
+          child.active = true;
+        }
+      }
+    }
+    super.attributeChangedCallback(name, oldval, newval);
+  }
 }
 
-customElements.define('mv-tab', MvTab);
+customElements.define("mv-tab", MvTab);
