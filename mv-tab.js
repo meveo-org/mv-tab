@@ -10,8 +10,15 @@ export class MvTab extends LitElement {
       disabled: { type: Boolean, attribute: true },
       active: { type: Boolean, reflect: true },
       selected: { type: String, reflect: true },
-      index: { type: Number, attribute: true },
-      tabType: { type: String, attribute: true }
+
+      //  valid type values are: "rounded", "icon"
+      //    default: "header"
+      type: { type: String, attribute: true },
+      first: { type: Boolean, attribute: true },
+      last: { type: Boolean, attribute: true },
+      total: { type: Number, attribute: true },
+      lastItem: { type: String, attribute: true },
+      parentType: { type: String, attribute: true }
     };
   }
 
@@ -26,10 +33,9 @@ export class MvTab extends LitElement {
 			ul {
 				list-style: none;
 				padding: 0;
-				margin: 0 auto;
+				margin: 0;
 				display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        padding-bottom: var(--mv-tab-padding-bottom, 12px);
+        padding-bottom: var(--mv-tab-padding-bottom, 0px);
         position: relative;
         width: var(--mv-tab-width, 100%);
 			}
@@ -39,7 +45,10 @@ export class MvTab extends LitElement {
 				align-items: center;
         justify-content: center;
         white-space: nowrap;
-        cursor: pointer; 
+        cursor: pointer;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
 			}
 			
 			li[disabled] {
@@ -60,11 +69,11 @@ export class MvTab extends LitElement {
 				margin-block-end: unset;
 			}
 			
-			ul.main-tab {
+			ul.header {
 			  position: relative;
 			}
 			
-			li.main-tab {
+			li.header {
 			  font-size: var(--mv-tab-font-size, 20px);
         font-weight: 400;
         height: var(--mv-tab-height, 71px);
@@ -72,80 +81,77 @@ export class MvTab extends LitElement {
 			  background: var(--mv-tab-background-color, #DFE7EE);
 			  color: var(--mv-tab-color, #67AFD3);
 			  border: 1px solid #99D2E7;
-			  box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
 			}
 			
-			li.main-tab:hover {
+			li.header:hover {
 			  box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
 			}
 			
-			li[active].main-tab {
+			li[active].header {
 			  font-weight: 700;
         box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
         color: var(--mv-tab-color-active, #FFFFFF);
+        cursor: default;
+        background: var(--mv-tab-background-color-active, radial-gradient(circle , #007adf 0%, #00ec76 180%));
 			}
 			
-			li[index="0"].main-tab {
+			li[first].header {
 			  border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
 			}
 			
-		  li[index="0"][active].main-tab {
+		  li[first][active].header {
 		    background: var(--mv-tab-background-color-active, linear-gradient(to right, #007adf 0%, #00ec76 180%));
 		    border: none;
 			}
 			
-			li[index="1"].main-tab {
+			li[last].header {
 			  border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
 			}
 			
-			li[index="1"][active].main-tab {
+			li[last][active].header {
 			  background: var(--mv-tab-background-color-active, linear-gradient(to left, #007adf 0%, #00ec76 180%));
 			  border: none;
 			}
 			
-			ul.panel-tab {
+			ul.rounded {
 			  position: relative;
 			}
 			
-			li.panel-tab {
+			li.rounded {
 			  font-size: var(--mv-tab-font-size, 20px);
         font-weight: 400;
         height: var(--mv-tab-height, 51px);
         color: var(--mv-tab-color, #4E686D);
 			  border: solid 1px var(--mv-tab-background-color-active, #4E686D);
 			  background: var(--mv-tab-background-color, #FFFFFF);
-			  box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
 			}
 			
-			li.panel-tab:hover {
+			li.rounded:hover {
 			  box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
 			}
 			
-			li[index="0"].panel-tab {
+			li[first].rounded {
 			  border-radius: 25px 0 0 25px;
 			}
 			
-			li[index="1"].panel-tab {
+			li[last].rounded {
 			  border-radius: 0 25px 25px 0;
 			}
 			
-			li[active].panel-tab {
+			li[active].rounded {
 			  background: var(--mv-tab-background-color-active, #4E686D);
 			  color: var(--mv-tab-color-active, #FFFFFF);
 			  box-shadow: none;
+			  cursor: default;
 			}
 			
-			ul.icon-tab {
+			ul.icon {
 			  position: relative;
 			}
 			
-			li.icon-tab {
+			li.icon {
         border-radius: 5px;
         width: var(--mv-tab-icon-width, 29px);
         height: var(--mv-tab-icon-height, 29px);
@@ -153,27 +159,25 @@ export class MvTab extends LitElement {
         color: var(--mv-tab-color, #4E686D);
         border: 1px solid var(--mv-tab-background-color-active, #4E686D);
         font-size: var(--mv-tab-font-size, 16px);
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
 			}
 			
-			li.icon-tab:hover {
+			li.icon:hover {
 			  box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.4);
 			}
 			
-			li[active].icon-tab {
+			li[active].icon {
 			  background: var(--mv-tab-background-color-active, #4E686D);
 			  color: var(--mv-tab-color-active, #FFFFFF);
 			  box-shadow: none;
+			  cursor: default;
 			}
 			
-			li[index="0"].icon-tab {
+			li[first].icon {
 			  position: absolute;
 			  right: 39px;
 			}
 			
-			li[index="1"].icon-tab {
+			li[last].icon {
 			  position: absolute;
 			  right: 0px;
 			}
@@ -182,15 +186,17 @@ export class MvTab extends LitElement {
 
   constructor() {
     super();
-    this.tabType = "main-tab";
+    this.type = "header";
   }
 
   render() {
     if (this.group) {
+      const total = this.children.length / 2;
+      const gridStyle = `grid-template-columns: repeat(${total}, 1fr)`;
       return html`
         <div class="mv-tab-group">
           <nav class="mv-tab-menu">
-            <ul class="${this.tabType}">
+            <ul class="${this.type}" style="${gridStyle}">
               <slot name="tab-item"></slot>
             </ul>
           </nav>
@@ -203,9 +209,10 @@ export class MvTab extends LitElement {
       this.setAttribute("slot", "tab-item");
       return html`
       <li
-        class="${this.tabType}"
+        class="${this.type}"
         .value="${this.key}"
-        index="${this.index}"
+        ?first="${this.first}"
+        ?last="${this.last}"
         ?disabled="${this.disabled}"
         ?active="${this.active}"
         @click="${this.selectTab}"
@@ -229,9 +236,19 @@ export class MvTab extends LitElement {
         this.children &&
         this.children[0] &&
         this.children[0].getAttribute("key");
+      this.lastItem =
+        this.children &&
+        this.children[this.children.length - 1] &&
+        this.children[this.children.length - 1].getAttribute("key");
+      this.parentType = this.type;
     }
     if (this.tab || this.content) {
       this.active = this.key === this.parentNode.selected;
+      this.last = this.key === this.parentNode.lastItem;
+      this.first = this.key === this.parentNode.selected;
+      if (this.parentNode.parentType) {
+        this.type = this.parentNode.parentType;
+      }
     }
     super.connectedCallback();
   }
