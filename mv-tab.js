@@ -29,7 +29,7 @@ export class MvTab extends LitElement {
 				font-size: var(--font-size-m, 10pt);
 				line-height: var(--line-height-s, 1.625);
 			}
-			
+
 			ul {
 				list-style: none;
 				padding: 0;
@@ -39,7 +39,7 @@ export class MvTab extends LitElement {
         position: relative;
         width: var(--mv-tab-width, 100%);
 			}
-			
+
 			li {
 				display: flex;
 				align-items: center;
@@ -50,31 +50,31 @@ export class MvTab extends LitElement {
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
 			}
-			
+
 			li[disabled] {
 				cursor: unset;
 				color: var(--n-color, rgb(105, 109, 110));
 				background-color: var(--on-pl-color, rgb(187, 187, 187));
 				border-color: var(--nd-color, rgb(187, 187, 187));
 			}
-			
+
 			section {
 				padding: 10px;
 				background-color: var(--b-color, rgb(255, 255, 255));
 			}
-			
+
 			p {
 				display: none;
 				margin-block-start: unset;
 				margin-block-end: unset;
 			}
-			
+
 			ul.header {
 			  position: relative;
 			}
-			
+
 			li.header {
-			  font-size: var(--mv-tab-font-size, 20px);
+			  font-size: var(--font-size-xl, 20px);
         font-weight: 400;
         height: var(--mv-tab-height, 71px);
         box-shadow: inset 0 0 9px 0 rgba(29, 155, 201, 0.3);
@@ -82,11 +82,11 @@ export class MvTab extends LitElement {
 			  color: var(--mv-tab-color, #67AFD3);
 			  border: 1px solid #99D2E7;
 			}
-			
+
 			li.header:hover {
 			  box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
 			}
-			
+
 			li[active].header {
 			  font-weight: 700;
         box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
@@ -94,63 +94,63 @@ export class MvTab extends LitElement {
         cursor: default;
         background: var(--mv-tab-background-color-active, radial-gradient(circle , #007adf 0%, #00ec76 180%));
 			}
-			
+
 			li[first].header {
 			  border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
 			}
-			
+
 		  li[first][active].header {
 		    background: var(--mv-tab-background-color-active, linear-gradient(to right, #007adf 0%, #00ec76 180%));
 		    border: none;
 			}
-			
+
 			li[last].header {
 			  border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
 			}
-			
+
 			li[last][active].header {
 			  background: var(--mv-tab-background-color-active, linear-gradient(to left, #007adf 0%, #00ec76 180%));
 			  border: none;
 			}
-			
+
 			ul.rounded {
 			  position: relative;
 			}
-			
+
 			li.rounded {
-			  font-size: var(--mv-tab-font-size, 20px);
+			  font-size: var(--font-size-xl, 20px);
         font-weight: 400;
         height: var(--mv-tab-height, 51px);
         color: var(--mv-tab-color, #4E686D);
 			  border: solid 1px var(--mv-tab-background-color-active, #4E686D);
 			  background: var(--mv-tab-background-color, #FFFFFF);
 			}
-			
+
 			li.rounded:hover {
 			  box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
 			}
-			
+
 			li[first].rounded {
 			  border-radius: 25px 0 0 25px;
 			}
-			
+
 			li[last].rounded {
 			  border-radius: 0 25px 25px 0;
 			}
-			
+
 			li[active].rounded {
 			  background: var(--mv-tab-background-color-active, #4E686D);
 			  color: var(--mv-tab-color-active, #FFFFFF);
 			  box-shadow: none;
 			  cursor: default;
 			}
-			
+
 			ul.icon {
 			  position: relative;
 			}
-			
+
 			li.icon {
         border-radius: 5px;
         width: var(--mv-tab-icon-width, 29px);
@@ -158,25 +158,25 @@ export class MvTab extends LitElement {
         background-color: var(--mv-tab-background-color, #FFFFFF);
         color: var(--mv-tab-color, #4E686D);
         border: 1px solid var(--mv-tab-background-color-active, #4E686D);
-        font-size: var(--mv-tab-font-size, 16px);
+        font-size: var(--font-size-m, 16px);
 			}
-			
+
 			li.icon:hover {
 			  box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.4);
 			}
-			
+
 			li[active].icon {
 			  background: var(--mv-tab-background-color-active, #4E686D);
 			  color: var(--mv-tab-color-active, #FFFFFF);
 			  box-shadow: none;
 			  cursor: default;
 			}
-			
+
 			li[first].icon {
 			  position: absolute;
 			  right: 39px;
 			}
-			
+
 			li[last].icon {
 			  position: absolute;
 			  right: 0px;
