@@ -19,7 +19,7 @@ To experiment with the MvTab component.
 3. Update the tabs in the index.html file
 
 
-You can also check this [demo](https://manaty.net/mv-tab/)
+You can also check this [demo](https://tab.meveo.org/)
 
 Finally you can also modify this project in [gitpod.io](https://gitpod.io#https://github.com/manaty/mv-tab)
 
