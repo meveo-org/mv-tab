@@ -24,164 +24,197 @@ export class MvTab extends LitElement {
 
   static get styles() {
     return css`
-			:host {
-				font-family: var(--font-family, Arial);
-				font-size: var(--font-size-m, 10pt);
-				line-height: var(--line-height-s, 1.625);
-			}
+	  :host {
+        --mv-tab-font-family: var(--font-family, Arial);
+        --mv-tab-font-size: var(--font-size-m, 10pt);
+        --padding-bottom: var(--mv-tab-padding-bottom, 0px);
+        --width: var(--mv-tab-width, 100%);
+        
+        --header-font-size: var(--font-size-xl, 20px);
+        --header-height: var(--mv-tab-header-height, 71px);
+        --header-background-color: var(--mv-tab-header-background-color, #DFE7EE);
+        --header-background-color-active: var(--mv-tab-header-background-color-active, radial-gradient(circle , #007adf 0%, #00ec76 180%));
+        --header-first-background-color-active: var(--mv-tab-header-first-background-color-active, linear-gradient(to right, #007adf 0%, #00ec76 180%));
+        --header-last-background-color-active: var(--mv-tab-header-last-background-color-active, linear-gradient(to left, #007adf 0%, #00ec76 180%));
+        --header-color: var(--mv-tab-header-color, #67AFD3);
+        --header-color-active: var(--mv-tab-header-color-active, #FFFFFF);
+        --header-border-color: var(--mv-tab-header-border-color, #99D2E7);
+        --header-border-radius: var(--mv-tab-header-border-radius, 5px);
+ 
+        --rounded-font-size: var(--font-size-xl, 20px);
+        --rounded-height: var(--mv-tab-rounded-height, 51px);
+        --rounded-background-color: var(--mv-tab-rounded-background-color, #FFFFFF);
+        --rounded-background-color-active: var(--mv-tab-rounded-background-color-active, #4E686D);
+        --rounded-color: var(--mv-tab-rounded-color, #4E686D);
+        --rounded-color-active: var(--mv-tab-rounded-color-active, #FFFFFF);
+        --rounded-border-radius: var(--mv-tab-rounded-border-radius, 25px);
+        
+        --icon-font-size: var(--font-size-m, 16px);
+        --icon-size: var(--mv-tab-icon-size, 29px);
+        --icon-background-color: var(--mv-tab-icon-background-color, #FFFFFF);
+        --icon-color: var(--mv-tab-icon-color, #4E686D);
+        --icon-background-color-active: var(--mv-tab-icon-background-color-active, #4E686D);
+        --icon-color-active: var(--mv-tab-icon-color-active, #FFFFFF);
+        --icon-border-radius: var(--mv-tab-icon-border-radius, 5px);
+        --icon-first-right: var(--mv-tab-icon-first-right, 39px);
+        --icon-last-right: var(--mv-tab-icon-last-right, 0px);
+	  }
 
-			ul {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-				display: grid;
-        padding-bottom: var(--mv-tab-padding-bottom, 0px);
+      ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+        padding-bottom: var(--padding-bottom);
         position: relative;
-        width: var(--mv-tab-width, 100%);
-			}
+        width: var(--width);
+        font-family: var(--mv-tab-font-family);
+	  }
 
-			li {
-				display: flex;
-				align-items: center;
+	  li {
+	    display: flex;
+		align-items: center;
         justify-content: center;
         white-space: nowrap;
         cursor: pointer;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
-			}
+	  }
 
-			li[disabled] {
-				cursor: unset;
-				color: var(--n-color, rgb(105, 109, 110));
-				background-color: var(--on-pl-color, rgb(187, 187, 187));
-				border-color: var(--nd-color, rgb(187, 187, 187));
-			}
+	  li[disabled] {
+		cursor: unset;
+		color: var(--n-color, rgb(105, 109, 110));
+		background-color: var(--on-pl-color, rgb(187, 187, 187));
+		border-color: var(--nd-color, rgb(187, 187, 187));
+	  }
 
-			section {
-				padding: 10px;
-				background-color: var(--b-color, rgb(255, 255, 255));
-			}
+	  section {
+		padding: 10px;
+		background-color: var(--b-color, rgb(255, 255, 255));
+		font-family: var(--mv-tab-font-family);
+		font-size: var(--mv-tab-font-size);
+	  }
 
-			p {
-				display: none;
-				margin-block-start: unset;
-				margin-block-end: unset;
-			}
+	  p {
+		display: none;
+		margin-block-start: unset;
+		margin-block-end: unset;
+	  }
 
-			ul.header {
-			  position: relative;
-			}
+	  ul.header {
+	    position: relative;
+	  }
 
-			li.header {
-			  font-size: var(--font-size-xl, 20px);
+	  li.header {
+		font-size: var(--header-font-size);
         font-weight: 400;
-        height: var(--mv-tab-height, 71px);
+        height: var(--header-height);
         box-shadow: inset 0 0 9px 0 rgba(29, 155, 201, 0.3);
-			  background: var(--mv-tab-background-color, #DFE7EE);
-			  color: var(--mv-tab-color, #67AFD3);
-			  border: 1px solid #99D2E7;
-			}
+		background: var(--header-background-color);
+		color: var(--header-color);
+	    border: 1px solid var(--header-border-color);
+	  }
 
-			li.header:hover {
-			  box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
-			}
+	  li.header:hover {
+	    box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
+	  }
 
-			li[active].header {
-			  font-weight: 700;
+	  li[active].header {
+		font-weight: 700;
         box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
-        color: var(--mv-tab-color-active, #FFFFFF);
+        color: var(--header-color-active);
         cursor: default;
-        background: var(--mv-tab-background-color-active, radial-gradient(circle , #007adf 0%, #00ec76 180%));
-			}
+        background: var(--header-background-color-active);
+	  }
 
-			li[first].header {
-			  border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-			}
+	  li[first].header {
+		border-top-left-radius: var(--header-border-radius);
+        border-bottom-left-radius: var(--header-border-radius);
+	  }
 
-		  li[first][active].header {
-		    background: var(--mv-tab-background-color-active, linear-gradient(to right, #007adf 0%, #00ec76 180%));
-		    border: none;
-			}
+	  li[first][active].header {
+		background: var(--header-first-background-color-active);
+		border: none;
+	  }
 
-			li[last].header {
-			  border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-			}
+	  li[last].header {
+		border-top-right-radius: var(--header-border-radius);
+        border-bottom-right-radius: var(--header-border-radius);
+	  }
 
-			li[last][active].header {
-			  background: var(--mv-tab-background-color-active, linear-gradient(to left, #007adf 0%, #00ec76 180%));
-			  border: none;
-			}
+	  li[last][active].header {
+	    background: var(--header-last-background-color-active);
+		border: none;
+	  }
 
-			ul.rounded {
-			  position: relative;
-			}
+	  ul.rounded {
+		position: relative;
+	  }
 
-			li.rounded {
-			  font-size: var(--font-size-xl, 20px);
+	  li.rounded {
+	    font-size: var(--rounded-font-size);
         font-weight: 400;
-        height: var(--mv-tab-height, 51px);
-        color: var(--mv-tab-color, #4E686D);
-			  border: solid 1px var(--mv-tab-background-color-active, #4E686D);
-			  background: var(--mv-tab-background-color, #FFFFFF);
-			}
+        height: var(--rounded-height);
+        color: var(--rounded-color);
+		border: solid 1px var(--rounded-background-color-active);
+	    background: var(--rounded-background-color);
+	  }
 
-			li.rounded:hover {
-			  box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
-			}
+	  li.rounded:hover {
+	    box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
+	  }
 
-			li[first].rounded {
-			  border-radius: 25px 0 0 25px;
-			}
+	  li[first].rounded {
+		border-radius: var(--rounded-border-radius) 0 0 var(--rounded-border-radius);
+	  }
 
-			li[last].rounded {
-			  border-radius: 0 25px 25px 0;
-			}
+	  li[last].rounded {
+		border-radius: 0 var(--rounded-border-radius) var(--rounded-border-radius) 0;
+	  }
 
-			li[active].rounded {
-			  background: var(--mv-tab-background-color-active, #4E686D);
-			  color: var(--mv-tab-color-active, #FFFFFF);
-			  box-shadow: none;
-			  cursor: default;
-			}
+	  li[active].rounded {
+		background: var(--rounded-background-color-active);
+		color: var(--rounded-color-active);
+		box-shadow: none;
+		cursor: default;
+	  }
 
-			ul.icon {
-			  position: relative;
-			}
+	  ul.icon {
+		position: relative;
+	  }
 
-			li.icon {
-        border-radius: 5px;
-        width: var(--mv-tab-icon-width, 29px);
-        height: var(--mv-tab-icon-height, 29px);
-        background-color: var(--mv-tab-background-color, #FFFFFF);
-        color: var(--mv-tab-color, #4E686D);
-        border: 1px solid var(--mv-tab-background-color-active, #4E686D);
-        font-size: var(--font-size-m, 16px);
-			}
+	  li.icon {
+        border-radius: var(--icon-border-radius);
+        width: var(--icon-size);
+        height: var(--icon-size);
+        background-color: var(--icon-background-color);
+        color: var(--icon-color);
+        border: 1px solid var(--icon-background-color-active);
+        font-size: var(--icon-font-size);
+	  }
 
-			li.icon:hover {
-			  box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.4);
-			}
+	  li.icon:hover {
+		box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.4);
+	  }
 
-			li[active].icon {
-			  background: var(--mv-tab-background-color-active, #4E686D);
-			  color: var(--mv-tab-color-active, #FFFFFF);
-			  box-shadow: none;
-			  cursor: default;
-			}
+	  li[active].icon {
+	    background: var(--icon-background-color-active);
+	    color: var(--icon-color-active);
+		box-shadow: none;
+		cursor: default;
+	  }
 
-			li[first].icon {
-			  position: absolute;
-			  right: 39px;
-			}
+	  li[first].icon {
+		position: absolute;
+		right: var(--icon-first-right);
+	  }
 
-			li[last].icon {
-			  position: absolute;
-			  right: 0px;
-			}
-		`;
+	  li[last].icon {
+		position: absolute;
+	    right: var(--icon-last-right);
+	  }
+	`;
   }
 
   constructor() {
