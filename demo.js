@@ -6,7 +6,10 @@ import "mv-font-awesome";
 export class MvTabDemo extends LitElement {
   static get properties() {
     return {
-      value: { type: String, attribute: true }
+      value: { type: String, attribute: true },
+      hue: { type: Number, attribute: false, reflect: false },
+      saturation: { type: Number, attribute: false, reflect: false },
+      lightness: { type: Number, attribute: false, reflect: false }
     };
   }
 
@@ -25,21 +28,84 @@ export class MvTabDemo extends LitElement {
       .icon {
         --mv-tab-padding-bottom: 20px;
       }
+      
+      .slidecontainer {
+        width: 400px;
+      }
+      
+      .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 15px;
+        border-radius: 5px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+      }
+      
+      .slider:hover {
+        opacity: 1;
+      }
+      
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #4CAF50;
+        cursor: pointer;
+      }
+      
+      .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #4CAF50;
+        cursor: pointer;
+      }
     `;
   }
 
+  constructor() {
+    super();
+    this.hue = 190;
+    this.saturation = 17;
+    this.lightness = 37;
+  }
+
   render() {
+    const hsl = `hsl(${this.hue}, ${this.saturation}%, ${this.lightness}%)`;
+    const color =
+        `--mv-tab-rounded-background-color-active: ${hsl};
+        --mv-tab-rounded-color: ${hsl};
+        --mv-tab-icon-background-color-active: ${hsl};
+        --mv-tab-icon-color: ${hsl};`;
     return html`
     <mv-tab group>
       <mv-tab tab key="perimeter-settings">Perimeter settings</mv-tab>
       <mv-tab content key="perimeter-settings">
-      
+        <h3>Customize theme with HSL colors</h3>
+        Hue: ${this.hue}
+        <div class="slidecontainer">
+          <input type="range" min="1" max="360" value="${this.hue}" class="slider" @input="${this.changeHue}">
+        </div>
+        Saturation: ${this.saturation}%
+        <div class="slidecontainer">
+          <input type="range" min="1" max="100" value="${this.saturation}" class="slider" @input="${this.changeSaturation}">
+        </div>
+        Lightness: ${this.lightness}%
+        <div class="slidecontainer">
+          <input type="range" min="1" max="100" value="${this.lightness}" class="slider" @input="${this.changeLightness}">
+        </div>
         <mv-container>
-          <mv-tab group type="rounded">
+          <mv-tab group type="rounded" style="${color}">
             <mv-tab tab key="discovery">Discovery</mv-tab>
             <mv-tab content key="discovery">
                DISCOVERY
-              <mv-tab group class="icon" type="icon">
+              <mv-tab group class="icon" type="icon" style="${color}">
                 <mv-tab tab key="compress">
                   <mv-fa icon="compress-arrows-alt"></mv-fa>
                 </mv-tab>
@@ -63,7 +129,7 @@ export class MvTabDemo extends LitElement {
             <mv-tab tab key="monitoring">Monitoring</mv-tab>
             <mv-tab content key="monitoring">
                MONITORING
-              <mv-tab group class="icon" type="icon">
+              <mv-tab group class="icon" type="icon" style="${color}">
                 <mv-tab tab key="compress">
                   <mv-fa icon="compress-arrows-alt"></mv-fa>
                 </mv-tab>
@@ -241,6 +307,18 @@ export class MvTabDemo extends LitElement {
     </mv-tab>
     `;
   }
+
+  changeHue = event => {
+    this.hue = event.currentTarget.value;
+  };
+
+  changeSaturation = event => {
+    this.saturation = event.currentTarget.value;
+  };
+
+  changeLightness = event => {
+    this.lightness = event.currentTarget.value;
+  };
 }
 
 customElements.define("mv-tab-demo", MvTabDemo);
