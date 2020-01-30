@@ -18,7 +18,11 @@ export class MvTab extends LitElement {
       last: { type: Boolean, attribute: true },
       total: { type: Number, attribute: true },
       lastItem: { type: String, attribute: true },
-      parentType: { type: String, attribute: true }
+      parentType: { type: String, attribute: true },
+
+      //  valid theme values are: "light", "dark"
+      //    default: "dark"
+      theme: { type: String, attribute: true }
     };
   }
 
@@ -32,32 +36,47 @@ export class MvTab extends LitElement {
         
         --header-font-size: var(--font-size-xl, 20px);
         --header-height: var(--mv-tab-header-height, 71px);
-        --header-background-color: var(--mv-tab-header-background-color, #DFE7EE);
-        --header-background-color-active: var(--mv-tab-header-background-color-active, radial-gradient(circle , #007adf 0%, #00ec76 180%));
-        --header-first-background-color-active: var(--mv-tab-header-first-background-color-active, linear-gradient(to right, #007adf 0%, #00ec76 180%));
-        --header-last-background-color-active: var(--mv-tab-header-last-background-color-active, linear-gradient(to left, #007adf 0%, #00ec76 180%));
-        --header-color: var(--mv-tab-header-color, #67AFD3);
-        --header-color-active: var(--mv-tab-header-color-active, #FFFFFF);
-        --header-border-color: var(--mv-tab-header-border-color, #99D2E7);
         --header-border-radius: var(--mv-tab-header-border-radius, 5px);
- 
+        --header-light-background: var(--mv-tab-header-light-background, #DFE7EE);
+        --header-active-light-background: var(--mv-tab-header-active-light-background, #B0B3B6);
+        --header-first-active-light-background: var(--mv-tab-header-first-active-light-background, #B0B3B6);
+        --header-last-active-light-background: var(--mv-tab-header-last-active-light-background, #B0B3B6);
+        --header-border-light-color: var(--mv-tab-header-border-light-color, #99D2E7);
+        --header-light-color: var(--mv-tab-header-light-color, #67AFD3);
+        --header-active-light-color: var(--mv-tab-header-active-light-color, #FFFFFF);
+        --header-dark-background: var(--mv-tab-header-dark-background, #DFE7EE);
+        --header-active-dark-background: var(--mv-tab-header-active-dark-background, radial-gradient(circle , #007adf 0%, #00ec76 180%));
+        --header-first-active-dark-background: var(--mv-tab-header-first-active-dark-background, linear-gradient(to right, #007adf 0%, #00ec76 180%));
+        --header-last-active-dark-background: var(--mv-tab-header-last-active-dark-background, linear-gradient(to left, #007adf 0%, #00ec76 180%));
+        --header-border-dark-color: var(--mv-tab-header-border-dark-color, #99D2E7);
+        --header-dark-color: var(--mv-tab-header-dark-color, #67AFD3);
+        --header-active-dark-color: var(--mv-tab-header-active-dark-color, #FFFFFF);
+        
         --rounded-font-size: var(--font-size-xl, 20px);
         --rounded-height: var(--mv-tab-rounded-height, 51px);
-        --rounded-background-color: var(--mv-tab-rounded-background-color, #FFFFFF);
-        --rounded-background-color-active: var(--mv-tab-rounded-background-color-active, #4E686D);
-        --rounded-color: var(--mv-tab-rounded-color, #4E686D);
-        --rounded-color-active: var(--mv-tab-rounded-color-active, #FFFFFF);
         --rounded-border-radius: var(--mv-tab-rounded-border-radius, 25px);
+        --rounded-light-background: var(--mv-tab-rounded-light-background, #FFFFFF);
+        --rounded-active-light-background: var(--mv-tab-rounded-active-light-background, #B0B3B6);
+        --rounded-light-color: var(--mv-tab-rounded-light-color, #4E686D);
+        --rounded-active-light-color: var(--mv-tab-rounded-active-light-color, #FFFFFF);
+        --rounded-dark-background: var(--mv-tab-rounded-dark-background, #FFFFFF);
+        --rounded-active-dark-background: var(--mv-tab-rounded-active-dark-background, #4E686D);
+        --rounded-dark-color: var(--mv-tab-rounded-dark-color, #4E686D);
+        --rounded-active-dark-color: var(--mv-tab-rounded-active-dark-color, #FFFFFF);
         
         --icon-font-size: var(--font-size-m, 16px);
         --icon-size: var(--mv-tab-icon-size, 29px);
-        --icon-background-color: var(--mv-tab-icon-background-color, #FFFFFF);
-        --icon-color: var(--mv-tab-icon-color, #4E686D);
-        --icon-background-color-active: var(--mv-tab-icon-background-color-active, #4E686D);
-        --icon-color-active: var(--mv-tab-icon-color-active, #FFFFFF);
         --icon-border-radius: var(--mv-tab-icon-border-radius, 5px);
         --icon-first-right: var(--mv-tab-icon-first-right, 39px);
         --icon-last-right: var(--mv-tab-icon-last-right, 0px);
+        --icon-dark-background: var(--mv-tab-icon-dark-background, #FFFFFF);
+        --icon-active-dark-background: var(--mv-tab-icon-active-dark-background, #4E686D);
+        --icon-dark-color: var(--mv-tab-icon-dark-color, #4E686D);
+        --icon-active-dark-color: var(--mv-tab-icon-active-dark-color, #FFFFFF);
+        --icon-light-background: var(--mv-tab-icon-light-background, #FFFFFF);
+        --icon-active-light-background: var(--mv-tab-icon-active-light-background, #B0B3B6);
+        --icon-light-color: var(--mv-tab-icon-light-color, #B0B3B6);
+        --icon-active-light-color: var(--mv-tab-icon-active-light-color, #FFFFFF);
 	  }
 
       ul {
@@ -157,7 +176,7 @@ export class MvTab extends LitElement {
         font-weight: 400;
         height: var(--rounded-height);
         color: var(--rounded-color);
-		border: solid 1px var(--rounded-background-color-active);
+		border: solid 1px var(--rounded-active-background-color);
 	    background: var(--rounded-background-color);
 	  }
 
@@ -174,7 +193,7 @@ export class MvTab extends LitElement {
 	  }
 
 	  li[active].rounded {
-		background: var(--rounded-background-color-active);
+		background: var(--rounded-active-background-color);
 		color: var(--rounded-color-active);
 		box-shadow: none;
 		cursor: default;
@@ -214,12 +233,50 @@ export class MvTab extends LitElement {
 		position: absolute;
 	    right: var(--icon-last-right);
 	  }
+	  
+	  .light {
+	    --header-background-color: var(--header-light-background);
+	    --header-background-color-active: var(--header-active-light-background);
+	    --header-first-background-color-active: var(--header-first-active-light-background);
+	    --header-last-background-color-active: var(--header-last-active-light-background);
+	    --header-border-color: var(--header-border-light-color);
+	    --header-color: var(--header-light-color);
+	    --header-color-active: var(--header-active-light-color);
+	    --rounded-background-color: var(--rounded-light-background);
+	    --rounded-active-background-color: var(--rounded-active-light-background);
+	    --rounded-color: var(--rounded-light-color);
+	    --rounded-color-active: var(--rounded-active-light-color);
+	    --icon-background-color: var(--icon-light-background);
+	    --icon-background-color-active: var(--icon-active-light-background);
+	    --icon-color: var(--icon-light-color);
+	    --icon-color-active: var(--icon-active-light-color);
+	  }
+	  
+	  .dark {
+	    --header-background-color: var(--header-dark-background);
+	    --header-background-color: var(--header-dark-background);
+	    --header-background-color-active: var(--header-active-dark-background);
+	    --header-first-background-color-active: var(--header-first-active-dark-background);
+	    --header-last-background-color-active: var(--header-last-active-dark-background);
+	    --header-border-color: var(--header-border-dark-color);
+	    --header-color: var(--header-dark-color);
+	    --header-color-active: var(--header-active-dark-color);
+	    --rounded-background-color: var(--rounded-dark-background);
+	    --rounded-active-background-color: var(--rounded-active-dark-background);
+	    --rounded-color: var(--rounded-dark-color);
+	    --rounded-color-active: var(--rounded-active-dark-color);
+	    --icon-background-color: var(--icon-dark-background);
+	    --icon-background-color-active: var(--icon-active-dark-background);
+	    --icon-color: var(--icon-dark-color);
+	    --icon-color-active: var(--icon-active-dark-color);
+	  }
 	`;
   }
 
   constructor() {
     super();
     this.type = "header";
+    this.theme = "dark";
   }
 
   render() {
@@ -227,7 +284,7 @@ export class MvTab extends LitElement {
       const total = this.children.length / 2;
       const gridStyle = `grid-template-columns: repeat(${total}, 1fr)`;
       return html`
-        <div class="mv-tab-group">
+        <div class="mv-tab-group ${this.theme}">
           <nav class="mv-tab-menu">
             <ul class="${this.type}" style="${gridStyle}">
               <slot name="tab-item"></slot>
