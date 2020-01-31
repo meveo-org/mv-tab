@@ -21,49 +21,46 @@ export class MvTab extends LitElement {
       parentType: { type: String, attribute: true },
 
       //  valid theme values are: "light", "dark"
-      //    default: "dark"
+      //    default: "light"
       theme: { type: String, attribute: true }
     };
   }
 
   static get styles() {
     return css`
-	  :host {
+	    :host {
         --mv-tab-font-family: var(--font-family, Arial);
         --mv-tab-font-size: var(--font-size-m, 10pt);
         --padding-bottom: var(--mv-tab-padding-bottom, 0px);
         --width: var(--mv-tab-width, 100%);
-        
         --header-font-size: var(--font-size-xl, 20px);
         --header-height: var(--mv-tab-header-height, 71px);
         --header-border-radius: var(--mv-tab-header-border-radius, 5px);
         --header-light-background: var(--mv-tab-header-light-background, #DFE7EE);
-        --header-active-light-background: var(--mv-tab-header-active-light-background, #B0B3B6);
-        --header-first-active-light-background: var(--mv-tab-header-first-active-light-background, #B0B3B6);
-        --header-last-active-light-background: var(--mv-tab-header-last-active-light-background, #B0B3B6);
+        --header-active-light-background: var(--mv-tab-header-active-light-background, radial-gradient(circle , #007ADF 0%, #00EC76 180%));
+        --header-first-active-light-background: var(--mv-tab-header-first-active-light-background, linear-gradient(to right, #007ADF 0%, #00EC76 180%));
+        --header-last-active-light-background: var(--mv-tab-header-last-active-light-background, linear-gradient(to left, #007ADF 0%, #00EC76 180%));
         --header-border-light-color: var(--mv-tab-header-border-light-color, #99D2E7);
         --header-light-color: var(--mv-tab-header-light-color, #67AFD3);
         --header-active-light-color: var(--mv-tab-header-active-light-color, #FFFFFF);
         --header-dark-background: var(--mv-tab-header-dark-background, #DFE7EE);
-        --header-active-dark-background: var(--mv-tab-header-active-dark-background, radial-gradient(circle , #007adf 0%, #00ec76 180%));
-        --header-first-active-dark-background: var(--mv-tab-header-first-active-dark-background, linear-gradient(to right, #007adf 0%, #00ec76 180%));
-        --header-last-active-dark-background: var(--mv-tab-header-last-active-dark-background, linear-gradient(to left, #007adf 0%, #00ec76 180%));
+        --header-active-dark-background: var(--mv-tab-header-active-dark-background, radial-gradient(circle , #4E686D 0%, #00EC76 180%));
+        --header-first-active-dark-background: var(--mv-tab-header-first-active-dark-background, linear-gradient(to right, #4E686D 0%, #00EC76 180%));
+        --header-last-active-dark-background: var(--mv-tab-header-last-active-dark-background, linear-gradient(to left, #4E686D 0%, #00EC76 180%));
         --header-border-dark-color: var(--mv-tab-header-border-dark-color, #99D2E7);
         --header-dark-color: var(--mv-tab-header-dark-color, #67AFD3);
         --header-active-dark-color: var(--mv-tab-header-active-dark-color, #FFFFFF);
-        
         --rounded-font-size: var(--font-size-xl, 20px);
         --rounded-height: var(--mv-tab-rounded-height, 51px);
         --rounded-border-radius: var(--mv-tab-rounded-border-radius, 25px);
         --rounded-light-background: var(--mv-tab-rounded-light-background, #FFFFFF);
-        --rounded-active-light-background: var(--mv-tab-rounded-active-light-background, #B0B3B6);
+        --rounded-active-light-background: var(--mv-tab-rounded-active-light-background, #007ADF);
         --rounded-light-color: var(--mv-tab-rounded-light-color, #4E686D);
-        --rounded-active-light-color: var(--mv-tab-rounded-active-light-color, #FFFFFF);
+        --rounded-active-light-color: var(--mv-tab-rounded-active-light-color, #FFFFFF);     
         --rounded-dark-background: var(--mv-tab-rounded-dark-background, #FFFFFF);
         --rounded-active-dark-background: var(--mv-tab-rounded-active-dark-background, #4E686D);
         --rounded-dark-color: var(--mv-tab-rounded-dark-color, #4E686D);
         --rounded-active-dark-color: var(--mv-tab-rounded-active-dark-color, #FFFFFF);
-        
         --icon-font-size: var(--font-size-m, 16px);
         --icon-size: var(--mv-tab-icon-size, 29px);
         --icon-border-radius: var(--mv-tab-icon-border-radius, 5px);
@@ -74,136 +71,136 @@ export class MvTab extends LitElement {
         --icon-dark-color: var(--mv-tab-icon-dark-color, #4E686D);
         --icon-active-dark-color: var(--mv-tab-icon-active-dark-color, #FFFFFF);
         --icon-light-background: var(--mv-tab-icon-light-background, #FFFFFF);
-        --icon-active-light-background: var(--mv-tab-icon-active-light-background, #B0B3B6);
-        --icon-light-color: var(--mv-tab-icon-light-color, #B0B3B6);
+        --icon-active-light-background: var(--mv-tab-icon-active-light-background, #007ADF);
+        --icon-light-color: var(--mv-tab-icon-light-color, #007ADF);
         --icon-active-light-color: var(--mv-tab-icon-active-light-color, #FFFFFF);
-	  }
+	    }
 
       ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: grid;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
         padding-bottom: var(--padding-bottom);
         position: relative;
         width: var(--width);
         font-family: var(--mv-tab-font-family);
-	  }
+	    }
 
-	  li {
-	    display: flex;
-		align-items: center;
+	    li {
+        display: flex;
+        align-items: center;
         justify-content: center;
         white-space: nowrap;
         cursor: pointer;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
-	  }
+	    }
 
-	  li[disabled] {
-		cursor: unset;
-		color: var(--n-color, rgb(105, 109, 110));
-		background-color: var(--on-pl-color, rgb(187, 187, 187));
-		border-color: var(--nd-color, rgb(187, 187, 187));
-	  }
-
-	  section {
-		padding: 10px;
-		background-color: var(--b-color, rgb(255, 255, 255));
-		font-family: var(--mv-tab-font-family);
-		font-size: var(--mv-tab-font-size);
-	  }
-
-	  p {
-		display: none;
-		margin-block-start: unset;
-		margin-block-end: unset;
-	  }
-
-	  ul.header {
-	    position: relative;
-	  }
-
-	  li.header {
-		font-size: var(--header-font-size);
+      li[disabled] {
+        cursor: unset;
+        color: var(--n-color, rgb(105, 109, 110));
+        background-color: var(--on-pl-color, rgb(187, 187, 187));
+        border-color: var(--nd-color, rgb(187, 187, 187));
+      }
+  
+      section {
+        padding: 10px;
+        background-color: var(--b-color, rgb(255, 255, 255));
+        font-family: var(--mv-tab-font-family);
+        font-size: var(--mv-tab-font-size);
+      }
+  
+      p {
+        display: none;
+        margin-block-start: unset;
+        margin-block-end: unset;
+      }
+  
+      ul.header {
+        position: relative;
+      }
+  
+      li.header {
+        font-size: var(--header-font-size);
         font-weight: 400;
         height: var(--header-height);
         box-shadow: inset 0 0 9px 0 rgba(29, 155, 201, 0.3);
-		background: var(--header-background-color);
-		color: var(--header-color);
-	    border: 1px solid var(--header-border-color);
-	  }
-
-	  li.header:hover {
-	    box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
-	  }
-
-	  li[active].header {
-		font-weight: 700;
+        background: var(--header-background-color);
+        color: var(--header-color);
+        border: 1px solid var(--header-border-color);
+      }
+  
+      li.header:hover {
+        box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
+      }
+  
+      li[active].header {
+        font-weight: 700;
         box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
         color: var(--header-color-active);
         cursor: default;
         background: var(--header-background-color-active);
-	  }
-
-	  li[first].header {
-		border-top-left-radius: var(--header-border-radius);
+      }
+  
+      li[first].header {
+        border-top-left-radius: var(--header-border-radius);
         border-bottom-left-radius: var(--header-border-radius);
-	  }
-
-	  li[first][active].header {
-		background: var(--header-first-background-color-active);
-		border: none;
-	  }
-
-	  li[last].header {
-		border-top-right-radius: var(--header-border-radius);
+      }
+  
+      li[first][active].header {
+        background: var(--header-first-background-color-active);
+        border: none;
+      }
+  
+      li[last].header {
+        border-top-right-radius: var(--header-border-radius);
         border-bottom-right-radius: var(--header-border-radius);
-	  }
-
-	  li[last][active].header {
-	    background: var(--header-last-background-color-active);
-		border: none;
-	  }
-
-	  ul.rounded {
-		position: relative;
-	  }
-
-	  li.rounded {
-	    font-size: var(--rounded-font-size);
+      }
+  
+      li[last][active].header {
+        background: var(--header-last-background-color-active);
+        border: none;
+      }
+  
+      ul.rounded {
+        position: relative;
+      }
+  
+      li.rounded {
+        font-size: var(--rounded-font-size);
         font-weight: 400;
         height: var(--rounded-height);
         color: var(--rounded-color);
-		border: solid 1px var(--rounded-active-background-color);
-	    background: var(--rounded-background-color);
-	  }
-
-	  li.rounded:hover {
-	    box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
-	  }
-
-	  li[first].rounded {
-		border-radius: var(--rounded-border-radius) 0 0 var(--rounded-border-radius);
-	  }
-
-	  li[last].rounded {
-		border-radius: 0 var(--rounded-border-radius) var(--rounded-border-radius) 0;
-	  }
-
-	  li[active].rounded {
-		background: var(--rounded-active-background-color);
-		color: var(--rounded-color-active);
-		box-shadow: none;
-		cursor: default;
-	  }
-
-	  ul.icon {
-		position: relative;
-	  }
-
-	  li.icon {
+        border: solid 1px var(--rounded-active-background-color);
+        background: var(--rounded-background-color);
+      }
+  
+      li.rounded:hover {
+        box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, 0.3);
+      }
+  
+      li[first].rounded {
+        border-radius: var(--rounded-border-radius) 0 0 var(--rounded-border-radius);
+      }
+  
+      li[last].rounded {
+        border-radius: 0 var(--rounded-border-radius) var(--rounded-border-radius) 0;
+      }
+  
+      li[active].rounded {
+        background: var(--rounded-active-background-color);
+        color: var(--rounded-color-active);
+        box-shadow: none;
+        cursor: default;
+      }
+  
+      ul.icon {
+        position: relative;
+      }
+  
+      li.icon {
         border-radius: var(--icon-border-radius);
         width: var(--icon-size);
         height: var(--icon-size);
@@ -211,72 +208,72 @@ export class MvTab extends LitElement {
         color: var(--icon-color);
         border: 1px solid var(--icon-background-color-active);
         font-size: var(--icon-font-size);
-	  }
-
-	  li.icon:hover {
-		box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.4);
-	  }
-
-	  li[active].icon {
-	    background: var(--icon-background-color-active);
-	    color: var(--icon-color-active);
-		box-shadow: none;
-		cursor: default;
-	  }
-
-	  li[first].icon {
-		position: absolute;
-		right: var(--icon-first-right);
-	  }
-
-	  li[last].icon {
-		position: absolute;
-	    right: var(--icon-last-right);
-	  }
-	  
-	  .light {
-	    --header-background-color: var(--header-light-background);
-	    --header-background-color-active: var(--header-active-light-background);
-	    --header-first-background-color-active: var(--header-first-active-light-background);
-	    --header-last-background-color-active: var(--header-last-active-light-background);
-	    --header-border-color: var(--header-border-light-color);
-	    --header-color: var(--header-light-color);
-	    --header-color-active: var(--header-active-light-color);
-	    --rounded-background-color: var(--rounded-light-background);
-	    --rounded-active-background-color: var(--rounded-active-light-background);
-	    --rounded-color: var(--rounded-light-color);
-	    --rounded-color-active: var(--rounded-active-light-color);
-	    --icon-background-color: var(--icon-light-background);
-	    --icon-background-color-active: var(--icon-active-light-background);
-	    --icon-color: var(--icon-light-color);
-	    --icon-color-active: var(--icon-active-light-color);
-	  }
-	  
-	  .dark {
-	    --header-background-color: var(--header-dark-background);
-	    --header-background-color: var(--header-dark-background);
-	    --header-background-color-active: var(--header-active-dark-background);
-	    --header-first-background-color-active: var(--header-first-active-dark-background);
-	    --header-last-background-color-active: var(--header-last-active-dark-background);
-	    --header-border-color: var(--header-border-dark-color);
-	    --header-color: var(--header-dark-color);
-	    --header-color-active: var(--header-active-dark-color);
-	    --rounded-background-color: var(--rounded-dark-background);
-	    --rounded-active-background-color: var(--rounded-active-dark-background);
-	    --rounded-color: var(--rounded-dark-color);
-	    --rounded-color-active: var(--rounded-active-dark-color);
-	    --icon-background-color: var(--icon-dark-background);
-	    --icon-background-color-active: var(--icon-active-dark-background);
-	    --icon-color: var(--icon-dark-color);
-	    --icon-color-active: var(--icon-active-dark-color);
-	  }
-	`;
+      }
+  
+      li.icon:hover {
+        box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.4);
+      }
+  
+      li[active].icon {
+        background: var(--icon-background-color-active);
+        color: var(--icon-color-active);
+        box-shadow: none;
+        cursor: default;
+      }
+  
+      li[first].icon {
+        position: absolute;
+        right: var(--icon-first-right);
+      }
+  
+      li[last].icon {
+        position: absolute;
+        right: var(--icon-last-right);
+      }
+      
+      .light {
+        --header-background-color: var(--header-light-background);
+        --header-background-color-active: var(--header-active-light-background);
+        --header-first-background-color-active: var(--header-first-active-light-background);
+        --header-last-background-color-active: var(--header-last-active-light-background);
+        --header-border-color: var(--header-border-light-color);
+        --header-color: var(--header-light-color);
+        --header-color-active: var(--header-active-light-color);
+        --rounded-background-color: var(--rounded-light-background);
+        --rounded-active-background-color: var(--rounded-active-light-background);
+        --rounded-color: var(--rounded-light-color);
+        --rounded-color-active: var(--rounded-active-light-color);
+        --icon-background-color: var(--icon-light-background);
+        --icon-background-color-active: var(--icon-active-light-background);
+        --icon-color: var(--icon-light-color);
+        --icon-color-active: var(--icon-active-light-color);
+      }
+      
+      .dark {
+        --header-background-color: var(--header-dark-background);
+        --header-background-color: var(--header-dark-background);
+        --header-background-color-active: var(--header-active-dark-background);
+        --header-first-background-color-active: var(--header-first-active-dark-background);
+        --header-last-background-color-active: var(--header-last-active-dark-background);
+        --header-border-color: var(--header-border-dark-color);
+        --header-color: var(--header-dark-color);
+        --header-color-active: var(--header-active-dark-color);
+        --rounded-background-color: var(--rounded-dark-background);
+        --rounded-active-background-color: var(--rounded-active-dark-background);
+        --rounded-color: var(--rounded-dark-color);
+        --rounded-color-active: var(--rounded-active-dark-color);
+        --icon-background-color: var(--icon-dark-background);
+        --icon-background-color-active: var(--icon-active-dark-background);
+        --icon-color: var(--icon-dark-color);
+        --icon-color-active: var(--icon-active-dark-color);
+      }
+	  `;
   }
 
   constructor() {
     super();
     this.type = "header";
-    this.theme = "dark";
+    this.theme = "light";
   }
 
   render() {

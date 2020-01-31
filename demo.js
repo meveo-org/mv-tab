@@ -43,8 +43,8 @@ export class MvTabDemo extends LitElement {
 
   constructor() {
     super();
-    this.open = false;
-    this.theme = "dark";
+    this.open = true;
+    this.theme = "light";
   }
 
   render() {
@@ -135,16 +135,16 @@ export class MvTabDemo extends LitElement {
       </mv-tab>
     </mv-tab>
     
-    <mv-tab group>
+    <mv-tab group .theme="${this.theme}">
       <mv-tab tab key="list">List</mv-tab>
       <mv-tab content key="list">
       
         <mv-container>
-          <mv-tab group type="rounded">
+          <mv-tab group type="rounded" .theme="${this.theme}">
             <mv-tab tab key="list">List</mv-tab>
             <mv-tab content key="list">
                LIST
-              <mv-tab group class="icon" type="icon">
+              <mv-tab group class="icon" type="icon" .theme="${this.theme}">
                 <mv-tab tab key="compress">
                   <mv-fa icon="compress-arrows-alt"></mv-fa>
                 </mv-tab>
@@ -168,7 +168,7 @@ export class MvTabDemo extends LitElement {
             <mv-tab tab key="graph">Graph</mv-tab>
             <mv-tab content key="graph">
                GRAPH
-              <mv-tab group class="icon" type="icon">
+              <mv-tab group class="icon" type="icon" .theme="${this.theme}">
                 <mv-tab tab key="compress">
                   <mv-fa icon="compress-arrows-alt"></mv-fa>
                 </mv-tab>
@@ -192,7 +192,7 @@ export class MvTabDemo extends LitElement {
             <mv-tab tab key="map">Map</mv-tab>
             <mv-tab content key="map">
                MAP
-              <mv-tab group class="icon" type="icon">
+              <mv-tab group class="icon" type="icon" .theme="${this.theme}">
                 <mv-tab tab key="compress">
                   <mv-fa icon="compress-arrows-alt"></mv-fa>
                 </mv-tab>
