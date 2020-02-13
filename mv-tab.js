@@ -363,6 +363,10 @@ export class MvTab extends LitElement {
         }
       }
     }
+    const tab = this.parentNode.selected;
+    this.dispatchEvent(
+      new CustomEvent("get-tab", { detail: { tab }, bubbles: true })
+    );
     super.attributeChangedCallback(name, oldval, newval);
   }
 
