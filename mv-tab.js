@@ -22,7 +22,8 @@ export class MvTab extends LitElement {
 
       //  valid theme values are: "light", "dark"
       //    default: "light"
-      theme: { type: String, attribute: true }
+      theme: { type: String, attribute: true },
+      noContent: { type: Boolean, attribute: true }
     };
   }
 
@@ -274,11 +275,12 @@ export class MvTab extends LitElement {
     super();
     this.type = "header";
     this.theme = "light";
+    this.noContent = false;
   }
 
   render() {
     if (this.group) {
-      const total = this.children.length / 2;
+      const total = this.noContent ? this.children.length : this.children.length / 2;
       const gridStyle = `grid-template-columns: repeat(${total}, 1fr)`;
       return html`
         <div class="mv-tab-group ${this.theme}">
@@ -363,16 +365,15 @@ export class MvTab extends LitElement {
         }
       }
     }
-    const tab = this.parentNode.selected;
-    this.dispatchEvent(
-      new CustomEvent("get-tab", { detail: { tab }, bubbles: true })
-    );
     super.attributeChangedCallback(name, oldval, newval);
   }
 
   selectTab = () => {
     if (!this.disabled) {
       this.parentNode.selected = this.key;
+      this.dispatchEvent(
+        new CustomEvent("change-tab", { detail: { tab: this.key } })
+      );
     }
   };
 }
