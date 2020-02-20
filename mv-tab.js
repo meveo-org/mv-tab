@@ -18,6 +18,7 @@ export class MvTab extends LitElement {
       last: { type: Boolean, attribute: true },
       total: { type: Number, attribute: true },
       lastItem: { type: String, attribute: true },
+      firstItem: { type: String, attribute: true },
       parentType: { type: String, attribute: true },
 
       //  valid theme values are: "light", "dark"
@@ -321,10 +322,11 @@ export class MvTab extends LitElement {
   connectedCallback() {
     //initialize
     if (this.group) {
-      this.selected =
+      this.firstItem =
         this.children &&
         this.children[0] &&
         this.children[0].getAttribute("key");
+      this.selected = this.selected ? this.selected : this.firstItem;
       this.lastItem =
         this.children &&
         this.children[this.children.length - 1] &&
@@ -334,7 +336,7 @@ export class MvTab extends LitElement {
     if (this.tab || this.content) {
       this.active = this.key === this.parentNode.selected;
       this.last = this.key === this.parentNode.lastItem;
-      this.first = this.key === this.parentNode.selected;
+      this.first = this.key === this.parentNode.firstItem;
       if (this.parentNode.parentType) {
         this.type = this.parentNode.parentType;
       }
@@ -371,9 +373,7 @@ export class MvTab extends LitElement {
   selectTab = () => {
     if (!this.disabled) {
       this.parentNode.selected = this.key;
-      this.dispatchEvent(
-        new CustomEvent("change-tab", { detail: { tab: this.key } })
-      );
+      this.dispatchEvent(new CustomEvent("change-tab"));
     }
   };
 }
