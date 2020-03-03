@@ -30,7 +30,7 @@ export class MvTab extends LitElement {
 
   static get styles() {
     return css`
-	    :host {
+      :host {
         --mv-tab-font-family: var(--font-family, Arial);
         --mv-tab-font-size: var(--font-size-m, 10pt);
         --padding-bottom: var(--mv-tab-padding-bottom, 0px);
@@ -76,8 +76,8 @@ export class MvTab extends LitElement {
         --icon-active-light-background: var(--mv-tab-icon-active-light-background, #007ADF);
         --icon-light-color: var(--mv-tab-icon-light-color, #007ADF);
         --icon-active-light-color: var(--mv-tab-icon-active-light-color, #FFFFFF);
-	    }
-
+      }
+      
       ul {
         list-style: none;
         padding: 0;
@@ -87,9 +87,9 @@ export class MvTab extends LitElement {
         position: relative;
         width: var(--width);
         font-family: var(--mv-tab-font-family);
-	    }
-
-	    li {
+      }
+      
+      li {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -98,8 +98,8 @@ export class MvTab extends LitElement {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
-	    }
-
+      }
+      
       li[disabled] {
         cursor: unset;
         color: var(--n-color, rgb(105, 109, 110));
@@ -269,7 +269,7 @@ export class MvTab extends LitElement {
         --icon-color: var(--icon-dark-color);
         --icon-color-active: var(--icon-active-dark-color);
       }
-	  `;
+    `;
   }
 
   constructor() {

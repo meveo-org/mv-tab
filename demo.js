@@ -7,7 +7,6 @@ export class MvTabDemo extends LitElement {
   static get properties() {
     return {
       value: { type: String, attribute: true },
-      open: { type: Boolean, attribute: true },
       theme: { type: String, attribute: true }
     };
   }
@@ -28,33 +27,43 @@ export class MvTabDemo extends LitElement {
         --mv-tab-padding-bottom: 20px;
       }
       
-      mv-fa[icon="lightbulb"] {
-        font-size: 50px;
+      fieldset > label, label > input {
         cursor: pointer;
-        margin: 20px;
       }
       
-      .theme {
-        display: flex;
-        justify-content: flex-start;
+      fieldset {
+        width: 120px;
+        margin-left: 10px;
+        border:2px solid red;
+        -moz-border-radius:8px;
+        -webkit-border-radius:8px;	
+        border-radius:8px;
+        color: #818181;
+        margin-bottom: 20px;
+      }
+      
+      legend {
+        font-weight: 500;
+        color: red;
       }
     `;
   }
 
   constructor() {
     super();
-    this.open = true;
     this.theme = "light";
   }
 
   render() {
     return html`
+    <fieldset>
+      <legend>Theme</legend>
+      <label><input type="radio" name="theme" value="light" checked @change="${this.radioChange}" />Light</label>
+      <label><input type="radio" name="theme" value="dark" @change="${this.radioChange}" />Dark</label>
+    </fieldset>
     <mv-tab group .theme="${this.theme}">
       <mv-tab tab key="perimeter-settings">Perimeter settings</mv-tab>
       <mv-tab content key="perimeter-settings">
-        <div class="theme">
-          <mv-fa icon="lightbulb" style="color: ${this.open ? "yellow" : ""}" @click=${this.toggleLightBulb}></mv-fa>
-        </div>
         <mv-container>
           <mv-tab group type="rounded" .theme="${this.theme}">
             <mv-tab tab key="discovery">Discovery</mv-tab>
@@ -263,9 +272,9 @@ export class MvTabDemo extends LitElement {
     `;
   }
 
-  toggleLightBulb = () => {
-    this.open = !this.open;
-    if (this.open) {
+  radioChange = originalEvent => {
+    const { target: { value } } = originalEvent;
+    if (value === "light") {
       this.theme = "light";
     } else {
       this.theme = "dark";
