@@ -23,8 +23,7 @@ export class MvTab extends LitElement {
 
       //  valid theme values are: "light", "dark"
       //    default: "light"
-      theme: { type: String, attribute: true },
-      noContent: { type: Boolean, attribute: true }
+      theme: { type: String, attribute: true }
     };
   }
 
@@ -76,6 +75,10 @@ export class MvTab extends LitElement {
         --icon-active-light-background: var(--mv-tab-icon-active-light-background, #007ADF);
         --icon-light-color: var(--mv-tab-icon-light-color, #007ADF);
         --icon-active-light-color: var(--mv-tab-icon-active-light-color, #FFFFFF);
+        --content-light-background: var(--mv-tab-content-light-background, --b-color, rgb(255, 255, 255));
+        --content-dark-background: var(--mv-tab-content-dark-background, #373E48);
+        --content-light-color: var(--mv-tab-content-light-color, #000000);
+        --content-dark-color: var(--mv-tab-content-dark-color, #FFFFFF);
       }
       
       ul {
@@ -109,9 +112,10 @@ export class MvTab extends LitElement {
   
       section {
         padding: 10px;
-        background-color: var(--b-color, rgb(255, 255, 255));
+        background-color: var(--background-color);
         font-family: var(--mv-tab-font-family);
         font-size: var(--mv-tab-font-size);
+        color: var(--color);
       }
   
       p {
@@ -249,6 +253,8 @@ export class MvTab extends LitElement {
         --icon-background-color-active: var(--icon-active-light-background);
         --icon-color: var(--icon-light-color);
         --icon-color-active: var(--icon-active-light-color);
+        --background-color: var(--content-light-background);
+        --color: var(--content-light-color);
       }
       
       .dark {
@@ -268,6 +274,8 @@ export class MvTab extends LitElement {
         --icon-background-color-active: var(--icon-active-dark-background);
         --icon-color: var(--icon-dark-color);
         --icon-color-active: var(--icon-active-dark-color);
+        --background-color: var(--content-dark-background);
+        --color: var(--content-dark-color);
       }
     `;
   }
@@ -276,12 +284,11 @@ export class MvTab extends LitElement {
     super();
     this.type = "header";
     this.theme = "light";
-    this.noContent = false;
   }
 
   render() {
     if (this.group) {
-      const total = this.noContent ? this.children.length : this.children.length / 2;
+      const total = this.children.length / 2;
       const gridStyle = `grid-template-columns: repeat(${total}, 1fr)`;
       return html`
         <div class="mv-tab-group ${this.theme}">
