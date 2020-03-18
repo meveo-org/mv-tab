@@ -150,6 +150,7 @@ export class MvTab extends LitElement {
         );
         --content-light-color: var(--mv-tab-content-light-color, #000000);
         --content-dark-color: var(--mv-tab-content-dark-color, #ffffff);
+        z-index: var(--mv-tab-icon-z-index, 0);
       }
 
       ul {
