@@ -23,7 +23,7 @@ export class MvTab extends LitElement {
 
       //  valid theme values are: "light", "dark"
       //    default: "light"
-      theme: { type: String, attribute: true }
+      theme: { type: String, attribute: true },
     };
   }
 
@@ -183,7 +183,7 @@ export class MvTab extends LitElement {
       }
 
       section {
-        padding: 10px;
+        padding: var(--mv-tab-content-padding, 10px);
         background-color: var(--background-color);
         font-family: var(--mv-tab-font-family);
         font-size: var(--mv-tab-font-size);
@@ -399,9 +399,7 @@ export class MvTab extends LitElement {
       `;
     } else if (this.content && this.active) {
       this.setAttribute("slot", "tab-content");
-      return html`
-        <slot></slot>
-      `;
+      return html` <slot></slot> `;
     }
     return html``;
   }
