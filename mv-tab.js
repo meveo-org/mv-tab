@@ -84,7 +84,8 @@ export class MvTab extends LitElement {
           --mv-tab-header-active-dark-color,
           #ffffff
         );
-        --rounded-font-size: var(--font-size-xl, 20px);
+        --rounded-font-size: var(--mv-rounded-font-size, 16px);
+        --rounded-padding: var(--mv-rounded-padding, 5px 10px);
         --rounded-height: var(--mv-tab-rounded-height, 51px);
         --rounded-border-radius: var(--mv-tab-rounded-border-radius, 25px);
         --rounded-light-background: var(
@@ -253,6 +254,7 @@ export class MvTab extends LitElement {
         color: var(--rounded-color);
         border: solid 1px var(--rounded-active-background-color);
         background: var(--rounded-background-color);
+        padding: var(--rounded-padding);
       }
 
       li.rounded:hover {
