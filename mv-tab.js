@@ -31,10 +31,10 @@ export class MvTab extends LitElement {
     return css`
       :host {
         --mv-tab-font-family: var(--font-family, Arial);
-        --mv-tab-font-size: var(--font-size-m, 10pt);
+        --mv-tab-font-size: var(--font-size-m, 1rem);
         --padding-bottom: var(--mv-tab-padding-bottom, 0px);
         --width: var(--mv-tab-width, 100%);
-        --header-font-size: var(--font-size-xl, 20px);
+        --header-font-size: var(--font-size-xl, 1.375rem);
         --header-height: var(--mv-tab-header-height, 71px);
         --header-border-radius: var(--mv-tab-header-border-radius, 5px);
         --header-light-background: var(
@@ -84,7 +84,7 @@ export class MvTab extends LitElement {
           --mv-tab-header-active-dark-color,
           #ffffff
         );
-        --rounded-font-size: var(--mv-rounded-font-size, 16px);
+        --rounded-font-size: var(--mv-rounded-font-size, var(--font-size-m));
         --rounded-padding: var(--mv-rounded-padding, 5px 10px);
         --rounded-height: var(--mv-tab-rounded-height, 51px);
         --rounded-border-radius: var(--mv-tab-rounded-border-radius, 25px);
@@ -114,7 +114,7 @@ export class MvTab extends LitElement {
           --mv-tab-rounded-active-dark-color,
           #ffffff
         );
-        --icon-font-size: var(--font-size-m, 16px);
+        --icon-font-size: var(--font-size-m, 1rem);
         --icon-size: var(--mv-tab-icon-size, 29px);
         --icon-border-radius: var(--mv-tab-icon-border-radius, 5px);
         --icon-border: var(
