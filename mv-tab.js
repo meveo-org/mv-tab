@@ -34,8 +34,8 @@ export class MvTab extends LitElement {
         --mv-tab-font-size: var(--font-size-m, 1rem);
         --padding-bottom: var(--mv-tab-padding-bottom, 0px);
         --width: var(--mv-tab-width, 100%);
-        --header-font-size: var(--font-size-xl, 1.375rem);
-        --header-height: var(--mv-tab-header-height, 71px);
+        --header-font-size: var(--font-size-m, 1rem);
+        --header-padding: var(--mv-tab-header-padding, 8px);
         --header-border-radius: var(--mv-tab-header-border-radius, 5px);
         --header-light-background: var(
           --mv-tab-header-light-background,
@@ -159,17 +159,16 @@ export class MvTab extends LitElement {
         padding: 0;
         margin: 0;
         display: grid;
-        padding-bottom: var(--padding-bottom);
+        grid-auto-flow: column;
         position: relative;
-        width: var(--width);
         font-family: var(--mv-tab-font-family);
+        width: max-content;
       }
 
       li {
         display: flex;
         align-items: center;
         justify-content: center;
-        white-space: nowrap;
         cursor: pointer;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -197,18 +196,16 @@ export class MvTab extends LitElement {
         margin-block-end: unset;
       }
 
-      ul.header {
-        position: relative;
-      }
-
       li.header {
         font-size: var(--header-font-size);
         font-weight: 400;
-        height: var(--header-height);
         box-shadow: inset 0 0 9px 0 rgba(29, 155, 201, 0.3);
         background: var(--header-background-color);
         color: var(--header-color);
         border: 1px solid var(--header-border-color);
+        padding: var(--header-padding);
+        overflow: hidden;
+        height: 100%;
       }
 
       li.header:hover {
@@ -250,11 +247,11 @@ export class MvTab extends LitElement {
       li.rounded {
         font-size: var(--rounded-font-size);
         font-weight: 400;
-        height: var(--rounded-height);
         color: var(--rounded-color);
         border: solid 1px var(--rounded-active-background-color);
         background: var(--rounded-background-color);
         padding: var(--rounded-padding);
+        height: 100%;
       }
 
       li.rounded:hover {
@@ -305,6 +302,10 @@ export class MvTab extends LitElement {
         color: var(--icon-color-active);
         box-shadow: none;
         cursor: default;
+      }
+
+      .mv-tab-menu {
+        overflow-x: auto;
       }
 
       .light {
@@ -370,12 +371,12 @@ export class MvTab extends LitElement {
 
   render() {
     if (this.group) {
-      const total = this.children.length / 2;
-      const gridStyle = `grid-template-columns: repeat(${total}, 1fr)`;
+      // const total = this.children.length / 2;
+      // const gridStyle = `grid-template-columns: repeat(${total}, 1fr)`;
       return html`
         <div class="mv-tab-group ${this.theme}">
           <nav class="mv-tab-menu">
-            <ul class="${this.type}" style="${gridStyle}">
+            <ul class="${this.type}">
               <slot name="tab-item"></slot>
             </ul>
           </nav>
