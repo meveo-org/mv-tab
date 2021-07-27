@@ -304,6 +304,10 @@ export class MvTab extends LitElement {
         cursor: default;
       }
 
+      .mv-tab-group {
+        display: grid;
+      }
+
       .mv-tab-menu {
         overflow-x: auto;
       }
@@ -371,8 +375,6 @@ export class MvTab extends LitElement {
 
   render() {
     if (this.group) {
-      // const total = this.children.length / 2;
-      // const gridStyle = `grid-template-columns: repeat(${total}, 1fr)`;
       return html`
         <div class="mv-tab-group ${this.theme}">
           <nav class="mv-tab-menu">
