@@ -1,7 +1,7 @@
-import { LitElement, html, css } from "lit-element";
+import { LitElement, html, css } from "lit";
+import "@meveo-org/mv-container";
+import "@meveo-org/mv-font-awesome";
 import "./mv-tab.js";
-import "mv-container";
-import "mv-font-awesome";
 
 export class MvTabDemo extends LitElement {
   static get properties() {
